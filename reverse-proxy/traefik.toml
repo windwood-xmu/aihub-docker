@@ -1,0 +1,26 @@
+debug = true
+
+logLevel = "ERROR"
+defaultEntryPoints = ["https","http"]
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+      [[entryPoints.https.tls.certificates]]
+      certFile = "/etc/certs/server.crt"
+      keyFile = "/etc/certs/server.key"
+
+# Activate docker API
+[docker]
+domain = "docker.local"
+watch = true
+
+# Activate Traefik dashboard API
+[api]
+  [api.statistics]
+    recentErrors = 10
