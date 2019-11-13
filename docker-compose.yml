@@ -9,7 +9,7 @@ services:
       - ./jupyterhub/jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DOCKER_JUPYTER_CONTAINER=jupyter/tensorflow-notebook
+      - DOCKER_JUPYTER_CONTAINER=jupyterlab_img
       - DOCKER_NETWORK_NAME=${COMPOSE_PROJECT_NAME}_default
       - HUB_IP=jupyterhub
       - HOST
@@ -18,7 +18,8 @@ services:
       - "traefik.frontend.rule=Host:${HOST}"
 
   jupyterlab:
-    image: jupyter/tensorflow-notebook
+    build: jupyterlab
+    image: jupyterlab_img
     container_name: jupyterlab_throaway
     network_mode: none
     command: echo
