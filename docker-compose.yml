@@ -3,6 +3,7 @@ version: '3'
 services:
   jupyterhub:
     build: jupyterhub
+    image: jupyterhub_img
     container_name: jupyterhub_hub
     volumes:
       - ./jupyterhub/jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
